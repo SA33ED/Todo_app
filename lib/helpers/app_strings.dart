@@ -1,7 +1,7 @@
 class AppStrings {
   AppStrings._();
   //appName
-  static const String appName = "Todo";
+  static const String appName = "UpTodo";
   // onBoardingTitleOne
   static const String onBoardingTitleOne = "Todo";
   // onBoardingTitleTwo
