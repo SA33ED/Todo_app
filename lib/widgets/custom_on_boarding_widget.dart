@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class CustomOnBoardingWidget extends StatefulWidget {
   CustomOnBoardingWidget({
@@ -53,7 +54,7 @@ class _CustomOnBoardingWidgetState extends State<CustomOnBoardingWidget> {
                     onTap: widget.startBtnOnTapFunction,
                     child: Text(
                       "SKIP",
-                      style: TextStyle(color: widget.titleColor),
+                      style: GoogleFonts.lato(color: widget.titleColor),
                     ),
                   ),
                 ),
@@ -196,17 +197,16 @@ class NextBtn extends StatelessWidget {
             borderRadius: BorderRadius.circular(4),
           ),
         ),
-        child: const Row(
+        child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Text(
               'NEXT',
               textAlign: TextAlign.center,
-              style: TextStyle(
+              style: GoogleFonts.lato(
                 color: Colors.white,
                 fontSize: 16,
-                fontFamily: 'Lato',
                 fontWeight: FontWeight.w500,
               ),
             ),
@@ -238,7 +238,7 @@ class StartBtn extends StatelessWidget {
             borderRadius: BorderRadius.circular(4),
           ),
         ),
-        child: const Row(
+        child: Row(
           mainAxisSize: MainAxisSize.min,
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -246,11 +246,9 @@ class StartBtn extends StatelessWidget {
             Text(
               'GET STARTED',
               textAlign: TextAlign.center,
-              style: TextStyle(
+              style: GoogleFonts.lato(
                 color: Colors.white,
                 fontSize: 16,
-                fontFamily: 'Poppins',
-                fontWeight: FontWeight.w600,
               ),
             ),
           ],

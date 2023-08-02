@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:to_do_app/helpers/app_colors.dart';
 import 'package:to_do_app/models/on_boarding_model.dart';
+import 'package:to_do_app/screens/home_screen.dart';
 import 'package:to_do_app/widgets/custom_on_boarding_widget.dart';
 
 class OnBoardingScreen extends StatelessWidget {
@@ -11,7 +12,9 @@ class OnBoardingScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: AppColors.primary,
       body: CustomOnBoardingWidget(
-        startBtnOnTapFunction: () {},
+        startBtnOnTapFunction: () {
+          Navigator.pushNamed(context, HomeScreen.id);
+        },
         dataList: onBoardingList,
         titleColor: Colors.white,
         subtitleColor: Colors.white,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:to_do_app/screens/home_screen.dart';
 import 'package:to_do_app/screens/on_boarding_screen.dart';
 import 'package:to_do_app/screens/splash_screen.dart';
 
@@ -16,6 +17,7 @@ class ToDoApp extends StatelessWidget {
       routes: {
         SplashScreen.id: (context) => const SplashScreen(),
         OnBoardingScreen.id: (context) => const OnBoardingScreen(),
+        HomeScreen.id: (context) => const HomeScreen(),
       },
       initialRoute: SplashScreen.id,
     );
