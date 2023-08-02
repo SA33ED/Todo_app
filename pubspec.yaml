@@ -86,6 +86,6 @@ flutter:
   # see https://flutter.dev/custom-fonts/#from-packages
 flutter_assets:
   assets_path: assets/images/
-  output_path: lib/core/utils/
+  output_path: lib/helpers/
   filename: app_assets.dart
   field_prefix: null
