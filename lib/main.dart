@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:to_do_app/screens/on_boarding_screen.dart';
 import 'package:to_do_app/screens/splash_screen.dart';
 
 void main() {
@@ -14,6 +15,7 @@ class ToDoApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       routes: {
         SplashScreen.id: (context) => const SplashScreen(),
+        OnBoardingScreen.id: (context) => const OnBoardingScreen(),
       },
       initialRoute: SplashScreen.id,
     );
