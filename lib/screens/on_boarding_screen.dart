@@ -10,7 +10,6 @@ class OnBoardingScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.primary,
       body: CustomOnBoardingWidget(
         startBtnOnTapFunction: () {
           Navigator.pushNamed(context, HomeScreen.id);
