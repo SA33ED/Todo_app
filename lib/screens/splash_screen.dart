@@ -31,15 +31,11 @@ class _SplashScreenState extends State<SplashScreen> {
           children: [
             SvgPicture.asset(Assets.imagesAppLogo),
             const SizedBox(height: 30),
-            const Text(
-              AppStrings.appName,
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 40,
-                fontFamily: 'Lato',
-                fontWeight: FontWeight.w700,
-              ),
-            ),
+            Text(AppStrings.appName,
+                style: Theme.of(context)
+                    .textTheme
+                    .displayLarge!
+                    .copyWith(fontSize: 40)),
           ],
         ),
       ),

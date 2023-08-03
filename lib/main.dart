@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:to_do_app/helpers/app_colors.dart';
-import 'package:to_do_app/screens/home_screen.dart';
-import 'package:to_do_app/screens/on_boarding_screen.dart';
-import 'package:to_do_app/screens/splash_screen.dart';
+
+import 'screens/home_screen.dart';
+import 'screens/on_boarding_screen.dart';
+import 'screens/splash_screen.dart';
 
 void main() {
   runApp(const ToDoApp());
@@ -14,7 +16,7 @@ class ToDoApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData(scaffoldBackgroundColor: AppColors.primary),
+      theme: getThemeData(),
       debugShowCheckedModeBanner: false,
       routes: {
         SplashScreen.id: (context) => const SplashScreen(),
@@ -24,4 +26,21 @@ class ToDoApp extends StatelessWidget {
       initialRoute: SplashScreen.id,
     );
   }
+}
+
+ThemeData getThemeData() {
+  return ThemeData(
+    scaffoldBackgroundColor: AppColors.primary,
+    textTheme: TextTheme(
+      displayLarge: GoogleFonts.lato(
+        color: AppColors.whiteText,
+        fontSize: 24,
+        fontWeight: FontWeight.w600,
+      ),
+      displayMedium: GoogleFonts.lato(
+          color: AppColors.whiteText,
+          fontSize: 17,
+          fontWeight: FontWeight.w400),
+    ),
+  );
 }
