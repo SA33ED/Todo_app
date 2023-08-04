@@ -5,6 +5,10 @@ class HomeScreen extends StatelessWidget {
   static String id = "HomeScreen";
   @override
   Widget build(BuildContext context) {
-    return const Scaffold();
+    return Scaffold(
+      body: ListView(
+        children: const [],
+      ),
+    );
   }
 }
