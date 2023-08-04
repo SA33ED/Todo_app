@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:to_do_app/helpers/app_assets.dart';
+import 'package:to_do_app/helpers/app_cashe.dart';
 import 'package:to_do_app/helpers/app_strings.dart';
+import 'package:to_do_app/screens/home_screen.dart';
 import 'package:to_do_app/screens/on_boarding_screen.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -15,9 +17,11 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
+    bool isVisited =
+        AppCashe().getData(key: AppStrings.sharedPreOnBoarding) ?? false;
     Future.delayed(const Duration(seconds: 3), () {
       Navigator.pushReplacement(context,
-          MaterialPageRoute(builder: (context) => const OnBoardingScreen()));
+          MaterialPageRoute(builder: (context) => isVisited==true?const HomeScreen(): const OnBoardingScreen()));
     });
     super.initState();
   }

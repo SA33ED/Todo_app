@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:to_do_app/helpers/app_cashe.dart';
 import 'package:to_do_app/helpers/app_colors.dart';
 
 import 'screens/home_screen.dart';
 import 'screens/on_boarding_screen.dart';
 import 'screens/splash_screen.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await AppCashe.init();
   runApp(const ToDoApp());
 }
 

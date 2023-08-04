@@ -17,4 +17,6 @@ class AppStrings {
   // onBoardingSubTitleThree
   static const String onBoardingSubTitleThree =
       "You can organize your daily tasks by adding your tasks into separate categories";
+  // sharedPreOnBoarding
+  static const String sharedPreOnBoarding = "OnBoarding";
 }

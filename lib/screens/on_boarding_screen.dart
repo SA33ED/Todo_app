@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:to_do_app/helpers/app_cashe.dart';
 import 'package:to_do_app/helpers/app_colors.dart';
+import 'package:to_do_app/helpers/app_strings.dart';
 import 'package:to_do_app/models/on_boarding_model.dart';
 import 'package:to_do_app/screens/home_screen.dart';
 import 'package:to_do_app/widgets/custom_on_boarding_widget.dart';
@@ -11,8 +13,14 @@ class OnBoardingScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: CustomOnBoardingWidget(
-        startBtnOnTapFunction: () {
-          Navigator.pushNamed(context, HomeScreen.id);
+        startBtnOnTapFunction: () async {
+          await AppCashe()
+              .setData(key: AppStrings.sharedPreOnBoarding, value: true)
+              .then(
+                (value) => {
+                  Navigator.pushReplacementNamed(context, HomeScreen.id),
+                },
+              );
         },
         dataList: onBoardingList,
         titleColor: Colors.white,
