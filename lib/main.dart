@@ -35,15 +35,25 @@ ThemeData getThemeData() {
   return ThemeData(
     scaffoldBackgroundColor: AppColors.primary,
     textTheme: TextTheme(
-      displayLarge: GoogleFonts.lato(
-        color: AppColors.whiteText,
-        fontSize: 24,
-        fontWeight: FontWeight.w600,
-      ),
-      displayMedium: GoogleFonts.lato(
+        bodyLarge: GoogleFonts.lato(
           color: AppColors.whiteText,
-          fontSize: 17,
-          fontWeight: FontWeight.w400),
-    ),
+          fontSize: 40,
+          fontWeight: FontWeight.w600,
+        ),
+        displayLarge: GoogleFonts.lato(
+          color: AppColors.whiteText.withOpacity(0.8700000047683716),
+          fontSize: 32,
+          fontWeight: FontWeight.w700,
+        ),
+        displayMedium: GoogleFonts.lato(
+          color: AppColors.whiteText.withOpacity(0.8700000047683716),
+          fontSize: 16,
+          fontWeight: FontWeight.w400,
+        ),
+        displaySmall: GoogleFonts.lato(
+          color: AppColors.whiteText.withOpacity(0.4399999976158142),
+          fontSize: 16,
+          fontWeight: FontWeight.w400,
+        )),
   );
 }

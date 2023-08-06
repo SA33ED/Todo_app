@@ -4,7 +4,8 @@ import 'package:to_do_app/helpers/app_assets.dart';
 import 'package:to_do_app/helpers/app_cashe.dart';
 import 'package:to_do_app/helpers/app_strings.dart';
 import 'package:to_do_app/screens/home_screen.dart';
-import 'package:to_do_app/screens/on_boarding_screen.dart';
+
+import 'on_boarding_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -20,8 +21,12 @@ class _SplashScreenState extends State<SplashScreen> {
     bool isVisited =
         AppCashe().getData(key: AppStrings.sharedPreOnBoarding) ?? false;
     Future.delayed(const Duration(seconds: 3), () {
-      Navigator.pushReplacement(context,
-          MaterialPageRoute(builder: (context) => isVisited==true?const HomeScreen(): const OnBoardingScreen()));
+      Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+              builder: (context) => isVisited == true
+                  ? const HomeScreen()
+                  : const OnBoardingScreen()));
     });
     super.initState();
   }
@@ -36,10 +41,7 @@ class _SplashScreenState extends State<SplashScreen> {
             SvgPicture.asset(Assets.imagesAppLogo),
             const SizedBox(height: 30),
             Text(AppStrings.appName,
-                style: Theme.of(context)
-                    .textTheme
-                    .displayLarge!
-                    .copyWith(fontSize: 40)),
+                style: Theme.of(context).textTheme.bodyLarge!),
           ],
         ),
       ),

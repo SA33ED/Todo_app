@@ -14,7 +14,10 @@ class HomeScreen extends StatelessWidget {
             DateFormat.yMMMMd().format(
               DateTime.now(),
             ),
-            style: Theme.of(context).textTheme.displayLarge,
+            style: Theme.of(context)
+                .textTheme
+                .displayLarge!
+                .copyWith(fontSize: 24),
           )
         ],
       ),
