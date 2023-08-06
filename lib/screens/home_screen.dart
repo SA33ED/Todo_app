@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:to_do_app/helpers/app_colors.dart';
+import 'package:intl/intl.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -7,7 +9,19 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: ListView(
-        children: const [],
+        children: [
+          Text(
+            DateFormat.yMMMMd().format(
+              DateTime.now(),
+            ),
+            style: Theme.of(context).textTheme.displayLarge,
+          )
+        ],
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        backgroundColor: AppColors.secondary,
+        child: const Icon(Icons.add),
       ),
     );
   }
