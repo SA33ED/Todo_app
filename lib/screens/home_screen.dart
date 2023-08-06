@@ -1,9 +1,9 @@
 import 'package:date_picker_timeline/date_picker_timeline.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:to_do_app/helpers/app_assets.dart';
 import 'package:to_do_app/helpers/app_colors.dart';
 import 'package:intl/intl.dart';
+import 'package:to_do_app/screens/add_task_screen.dart';
+import '../widgets/task_item.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -56,122 +56,18 @@ class _HomeScreenState extends State<HomeScreen> {
               },
             ),
             const SizedBox(height: 32),
-            // NoTasksWidgets(customTextTheme: customTextTheme)
+            // NoTasksWidgets(customTextTheme: customTextTheme),
             TaskItem(customTextTheme: customTextTheme),
           ],
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          Navigator.pushNamed(context, AddTaskScreen.id);
+        },
         backgroundColor: AppColors.secondary,
         child: const Icon(Icons.add),
       ),
-    );
-  }
-}
-
-class TaskItem extends StatelessWidget {
-  const TaskItem({
-    super.key,
-    required this.customTextTheme,
-  });
-
-  final TextTheme customTextTheme;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(10),
-      height: 128,
-      decoration: BoxDecoration(
-        color: AppColors.secondary,
-        borderRadius: BorderRadius.circular(16),
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                "Task1",
-                style: customTextTheme.displayLarge!
-                    .copyWith(fontSize: 24),
-              ),
-              Row(
-                children: [
-                  const Icon(
-                    Icons.timer_sharp,
-                    color: Colors.white,
-                  ),
-                  const SizedBox(width: 10),
-                  Text(
-                    "09:33 PM - 09:48 PM",
-                    style: customTextTheme.displayMedium,
-                  )
-                ],
-              ),
-              Text(
-                "Learn Dart",
-                style: customTextTheme.displayLarge!
-                    .copyWith(fontSize: 24),
-              )
-            ],
-          ),
-          Row(
-            children: [
-              const VerticalDivider(
-                indent: 20,
-                endIndent: 20,
-                color: Colors.white,
-                thickness: 1,
-              ),
-              RotatedBox(
-                quarterTurns: 3,
-                child: Text(
-                  "TODO",
-                  style: customTextTheme.displayMedium,
-                ),
-              ),
-            ],
-          )
-        ],
-      ),
-    );
-  }
-}
-
-class NoTasksWidgets extends StatelessWidget {
-  const NoTasksWidgets({
-    super.key,
-    required this.customTextTheme,
-  });
-
-  final TextTheme customTextTheme;
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        const SizedBox(height: 19),
-        //no tasks image
-        SvgPicture.asset(
-          Assets.imagesTasks,
-          width: 300,
-        ),
-        //title
-        Text(
-          "What do you want to do today?",
-          style: customTextTheme.displayMedium!.copyWith(fontSize: 20),
-        ),
-        const SizedBox(height: 10),
-        //sub Title
-        Text(
-          "Tap + to add your tasks",
-          style: customTextTheme.displayMedium,
-        ),
-      ],
     );
   }
 }
