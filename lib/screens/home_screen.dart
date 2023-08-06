@@ -55,7 +55,9 @@ class _HomeScreenState extends State<HomeScreen> {
                 });
               },
             ),
-            NoTasksWidgets(customTextTheme: customTextTheme)
+            const SizedBox(height: 32),
+            // NoTasksWidgets(customTextTheme: customTextTheme)
+            TaskItem(customTextTheme: customTextTheme),
           ],
         ),
       ),
@@ -63,6 +65,78 @@ class _HomeScreenState extends State<HomeScreen> {
         onPressed: () {},
         backgroundColor: AppColors.secondary,
         child: const Icon(Icons.add),
+      ),
+    );
+  }
+}
+
+class TaskItem extends StatelessWidget {
+  const TaskItem({
+    super.key,
+    required this.customTextTheme,
+  });
+
+  final TextTheme customTextTheme;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.all(10),
+      height: 128,
+      decoration: BoxDecoration(
+        color: AppColors.secondary,
+        borderRadius: BorderRadius.circular(16),
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                "Task1",
+                style: customTextTheme.displayLarge!
+                    .copyWith(fontSize: 24),
+              ),
+              Row(
+                children: [
+                  const Icon(
+                    Icons.timer_sharp,
+                    color: Colors.white,
+                  ),
+                  const SizedBox(width: 10),
+                  Text(
+                    "09:33 PM - 09:48 PM",
+                    style: customTextTheme.displayMedium,
+                  )
+                ],
+              ),
+              Text(
+                "Learn Dart",
+                style: customTextTheme.displayLarge!
+                    .copyWith(fontSize: 24),
+              )
+            ],
+          ),
+          Row(
+            children: [
+              const VerticalDivider(
+                indent: 20,
+                endIndent: 20,
+                color: Colors.white,
+                thickness: 1,
+              ),
+              RotatedBox(
+                quarterTurns: 3,
+                child: Text(
+                  "TODO",
+                  style: customTextTheme.displayMedium,
+                ),
+              ),
+            ],
+          )
+        ],
       ),
     );
   }
