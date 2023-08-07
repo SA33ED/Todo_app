@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:to_do_app/helpers/app_cashe.dart';
 import 'package:to_do_app/helpers/app_colors.dart';
@@ -19,16 +20,21 @@ class ToDoApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: getThemeData(),
-      debugShowCheckedModeBanner: false,
-      routes: {
-        SplashScreen.id: (context) => const SplashScreen(),
-        OnBoardingScreen.id: (context) => const OnBoardingScreen(),
-        HomeScreen.id: (context) => const HomeScreen(),
-        AddTaskScreen.id: (context) => const AddTaskScreen(),
+    return ScreenUtilInit(
+      designSize: const Size(375, 812),
+      builder: (context, child) {
+        return MaterialApp(
+          theme: getThemeData(),
+          debugShowCheckedModeBanner: false,
+          routes: {
+            SplashScreen.id: (context) => const SplashScreen(),
+            OnBoardingScreen.id: (context) => const OnBoardingScreen(),
+            HomeScreen.id: (context) => const HomeScreen(),
+            AddTaskScreen.id: (context) => const AddTaskScreen(),
+          },
+          initialRoute: SplashScreen.id,
+        );
       },
-      initialRoute: SplashScreen.id,
     );
   }
 }

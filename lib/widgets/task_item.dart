@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import '../helpers/app_colors.dart';
 import 'custom_btn_widget.dart';
 
-
 class TaskItem extends StatelessWidget {
   const TaskItem({
     super.key,
@@ -77,6 +76,7 @@ class TaskItem extends StatelessWidget {
             context: context,
             builder: (context) {
               return Container(
+                padding: const EdgeInsets.symmetric(horizontal: 24.0),
                 height: 270,
                 color: AppColors.background1,
                 child: Column(
