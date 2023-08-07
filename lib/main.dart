@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:to_do_app/cubit/cubit/task_cubit.dart';
 import 'package:to_do_app/helpers/app_cashe.dart';
 import 'package:to_do_app/helpers/app_colors.dart';
 import 'package:to_do_app/screens/add_task_screen.dart';
@@ -12,7 +14,10 @@ import 'screens/splash_screen.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await AppCashe.init();
-  runApp(const ToDoApp());
+  runApp(BlocProvider(
+    create: (context) => TaskCubit(),
+    child: const ToDoApp(),
+  ));
 }
 
 class ToDoApp extends StatelessWidget {

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:to_do_app/helpers/app_colors.dart';
 import 'package:intl/intl.dart';
 import 'package:to_do_app/screens/add_task_screen.dart';
-import '../widgets/task_item.dart';
+import '../widgets/no_task_widget.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -56,8 +56,8 @@ class _HomeScreenState extends State<HomeScreen> {
               },
             ),
             const SizedBox(height: 32),
-            // NoTasksWidgets(customTextTheme: customTextTheme),
-            TaskItem(customTextTheme: customTextTheme),
+            NoTasksWidgets(customTextTheme: customTextTheme),
+            // TaskItem(customTextTheme: customTextTheme),
           ],
         ),
       ),
