@@ -4,14 +4,26 @@ import 'package:intl/intl.dart';
 import 'package:to_do_app/cubit/cubit/task_state.dart';
 
 import '../../helpers/app_colors.dart';
+import '../../models/task_model.dart';
 
 class TaskCubit extends Cubit<TaskState> {
+  GlobalKey<FormState> formKey = GlobalKey();
+
   TaskCubit() : super(TaskInitial());
+
+  String? selectedTitle;
+
+  String? selectedNote;
+
   DateTime? selectedDate = DateTime.now();
+
   String selectedStartTime = DateFormat('hh:mm a').format(DateTime.now());
+
   String selectedEndTime = DateFormat('hh:mm a')
       .format(DateTime.now().add(const Duration(hours: 1)));
+
   int selectedColorIndex = 0;
+
   List<Color> colors = [
     AppColors.red,
     AppColors.green,
@@ -20,6 +32,63 @@ class TaskCubit extends Cubit<TaskState> {
     AppColors.customYellow,
     AppColors.purble,
   ];
+
+  List<TaskModel> tasksList = [
+    TaskModel(
+      id: 1,
+      title: "Task One",
+      note: "Learning Dart",
+      date: DateTime.now(),
+      startTime: "09:33 AM",
+      endTime: "09:45 PM",
+    ),
+    TaskModel(
+      id: 2,
+      title: "Task Two",
+      note: "Learning Flutter",
+      date: DateTime.now(),
+      startTime: "10:33 AM",
+      endTime: "10:45 PM",
+      status: "Completed",
+      color: AppColors.lightBlue,
+    ),
+    TaskModel(
+        id: 3,
+        title: "Task One",
+        note: "Learning Dart",
+        date: DateTime.now(),
+        startTime: "09:33 AM",
+        endTime: "09:45 PM",
+        color: AppColors.purble),
+    TaskModel(
+        id: 4,
+        title: "Task Two",
+        note: "Learning Flutter",
+        date: DateTime.now(),
+        startTime: "10:33 AM",
+        endTime: "10:45 PM",
+        status: "Completed",
+        color: AppColors.customYellow),
+    TaskModel(
+      id: 5,
+      title: "Task One",
+      note: "Learning Dart",
+      date: DateTime.now(),
+      startTime: "09:33 AM",
+      endTime: "09:45 PM",
+    ),
+    TaskModel(
+      id: 6,
+      title: "Task Two",
+      note: "Learning Flutter",
+      date: DateTime.now(),
+      startTime: "10:33 AM",
+      endTime: "10:45 PM",
+      status: "Completed",
+      color: AppColors.green,
+    ),
+  ];
+
   void getDate(context) async {
     emit(GetDateLoadingState());
     DateTime? pickedDate = await showDatePicker(
@@ -32,6 +101,12 @@ class TaskCubit extends Cubit<TaskState> {
       selectedDate = pickedDate;
       emit(GetDateSucessState());
     }
+  }
+
+  void getselectedDate(date) {
+    emit(GetSelectedDateLoadingState());
+    selectedDate = date;
+    emit(GetSelectedDateSucessState());
   }
 
   void getStartTime(context) async {
@@ -61,5 +136,15 @@ class TaskCubit extends Cubit<TaskState> {
   void updateSelectedColor(index) {
     selectedColorIndex = index;
     emit(UpdateSelectedColorState());
+  }
+
+  void addTask(TaskModel task) {
+    try {
+      emit(AddTaskLoadingState());
+      tasksList.add(task);
+      emit(AddTaskSucssesState());
+    } catch (e) {
+      emit(AddTaskErrorState());
+    }
   }
 }

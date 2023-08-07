@@ -9,16 +9,17 @@ class CustomBtn extends StatelessWidget {
     super.key,
     required this.customTextTheme,
     required this.title,
+    this.onTap,
     this.btnColor = AppColors.secondary,
   });
-
+  VoidCallback? onTap;
   final TextTheme customTextTheme;
   Color? btnColor = AppColors.secondary;
   String title;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {},
+      onTap: onTap,
       child: Container(
         alignment: Alignment.center,
         height: 48,

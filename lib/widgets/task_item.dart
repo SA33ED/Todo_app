@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:to_do_app/models/task_model.dart';
 
 import '../helpers/app_colors.dart';
 import 'custom_btn_widget.dart';
@@ -7,10 +8,11 @@ class TaskItem extends StatelessWidget {
   const TaskItem({
     super.key,
     required this.customTextTheme,
+    required this.taskmodel,
   });
 
   final TextTheme customTextTheme;
-
+  final TaskModel taskmodel;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -18,7 +20,7 @@ class TaskItem extends StatelessWidget {
         padding: const EdgeInsets.all(10),
         height: 128,
         decoration: BoxDecoration(
-          color: AppColors.secondary,
+          color: taskmodel.color,
           borderRadius: BorderRadius.circular(16),
         ),
         child: Row(
@@ -29,7 +31,7 @@ class TaskItem extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "Task1",
+                  taskmodel.title,
                   style: customTextTheme.displayLarge!.copyWith(fontSize: 24),
                 ),
                 Row(
@@ -40,13 +42,13 @@ class TaskItem extends StatelessWidget {
                     ),
                     const SizedBox(width: 10),
                     Text(
-                      "09:33 PM - 09:48 PM",
+                      "${taskmodel.startTime} PM - ${taskmodel.endTime} PM",
                       style: customTextTheme.displayMedium,
                     )
                   ],
                 ),
                 Text(
-                  "Learn Dart",
+                  taskmodel.note,
                   style: customTextTheme.displayLarge!.copyWith(fontSize: 24),
                 )
               ],
@@ -62,7 +64,7 @@ class TaskItem extends StatelessWidget {
                 RotatedBox(
                   quarterTurns: 3,
                   child: Text(
-                    "TODO",
+                    taskmodel.status!,
                     style: customTextTheme.displayMedium,
                   ),
                 ),

@@ -15,6 +15,7 @@ class CustomTextField extends StatelessWidget {
     this.obscureText,
     this.readOnly,
     this.onChanged,
+    this.onSubmitted,
     this.validator,
     this.controller,
   });
@@ -25,6 +26,7 @@ class CustomTextField extends StatelessWidget {
   Widget? label;
   Widget? suffixIcon;
   void Function(String)? onChanged;
+  void Function(String)? onSubmitted;
   String? Function(String?)? validator;
   TextInputType? textInputType;
   TextEditingController? controller;
@@ -68,6 +70,7 @@ class CustomTextField extends StatelessWidget {
           ),
           keyboardType: textInputType,
           onChanged: onChanged,
+          onFieldSubmitted: onSubmitted,
           obscureText: obscureText ?? false,
           readOnly: readOnly ?? false,
         )

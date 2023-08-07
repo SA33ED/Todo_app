@@ -1,9 +1,12 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
 import 'package:to_do_app/cubit/cubit/task_cubit.dart';
 import 'package:to_do_app/helpers/app_colors.dart';
+import 'package:to_do_app/models/task_model.dart';
 import 'package:to_do_app/widgets/custom_btn_widget.dart';
 import 'package:to_do_app/widgets/custom_input_field.dart';
 
@@ -13,6 +16,7 @@ class AddTaskScreen extends StatelessWidget {
   static String id = "AddTaskScreen";
 
   const AddTaskScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     TextTheme customTextTheme = Theme.of(context).textTheme;
@@ -37,18 +41,29 @@ class AddTaskScreen extends StatelessWidget {
       body: Padding(
         padding: const EdgeInsets.all(24),
         //!Form Started
-        child: Form(
-          child: BlocBuilder<TaskCubit, TaskState>(
-            builder: (context, state) {
-              return Column(children: [
+        child: BlocBuilder<TaskCubit, TaskState>(
+          builder: (context, state) {
+            return Form(
+              key: BlocProvider.of<TaskCubit>(context).formKey,
+              child: Column(children: [
                 Expanded(
                   child: ListView(
                     children: [
                       //ToDo Title
-                      CustomTextField(title: "Title", hint: "Enter title here"),
+                      CustomTextField(
+                        title: "Title",
+                        hint: "Enter title here",
+                        onChanged: (data) => BlocProvider.of<TaskCubit>(context)
+                            .selectedTitle = data,
+                      ),
                       SizedBox(height: 24.h),
                       //ToDo Note
-                      CustomTextField(title: "Note", hint: "Enter note here"),
+                      CustomTextField(
+                        title: "Note",
+                        hint: "Enter note here",
+                        onChanged: (data) => BlocProvider.of<TaskCubit>(context)
+                            .selectedNote = data,
+                      ),
                       SizedBox(height: 24.h),
                       //ToDo Date
                       CustomTextField(
@@ -144,10 +159,34 @@ class AddTaskScreen extends StatelessWidget {
                   ),
                 ),
                 CustomBtn(
-                    customTextTheme: customTextTheme, title: "Create Task")
-              ]);
-            },
-          ),
+                  customTextTheme: customTextTheme,
+                  title: "Create Task",
+                  onTap: () {
+                    BlocProvider.of<TaskCubit>(context).addTask(
+                      TaskModel(
+                        id: 5,
+                        title:
+                            BlocProvider.of<TaskCubit>(context).selectedTitle ??
+                                "Untitled",
+                        note:
+                            BlocProvider.of<TaskCubit>(context).selectedNote ??
+                                "Empty",
+                        date: BlocProvider.of<TaskCubit>(context).selectedDate!,
+                        startTime: BlocProvider.of<TaskCubit>(context)
+                            .selectedStartTime,
+                        endTime:
+                            BlocProvider.of<TaskCubit>(context).selectedEndTime,
+                        color: BlocProvider.of<TaskCubit>(context).colors[
+                            BlocProvider.of<TaskCubit>(context)
+                                .selectedColorIndex],
+                      ),
+                    );
+                    Navigator.pop(context);
+                  },
+                )
+              ]),
+            );
+          },
         ),
         //!Form Ended
       ),
