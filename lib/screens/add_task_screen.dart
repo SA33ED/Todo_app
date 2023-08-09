@@ -9,7 +9,6 @@ import 'package:to_do_app/helpers/app_colors.dart';
 import 'package:to_do_app/models/task_model.dart';
 import 'package:to_do_app/widgets/custom_btn_widget.dart';
 import 'package:to_do_app/widgets/custom_input_field.dart';
-
 import '../cubit/cubit/task_state.dart';
 
 class AddTaskScreen extends StatelessWidget {
@@ -116,48 +115,53 @@ class AddTaskScreen extends StatelessWidget {
                       //ToDo Colors
                       Column(
                         children: [
-                          Row(
+                          Column(
                             children: [
-                              Padding(
-                                padding: const EdgeInsets.only(bottom: 10),
-                                child: Text("Color",
-                                    style: customTextTheme.displayMedium),
-                              )
+                              Row(
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.only(bottom: 10),
+                                    child: Text("Color",
+                                        style: customTextTheme.displayMedium),
+                                  )
+                                ],
+                              ),
                             ],
                           ),
-                        ],
-                      ),
-                      SizedBox(
-                        height: 50.h,
-                        child: ListView.separated(
-                            scrollDirection: Axis.horizontal,
-                            itemCount: BlocProvider.of<TaskCubit>(context)
-                                .colors
-                                .length,
-                            separatorBuilder: (_, index) =>
-                                SizedBox(width: 8.w),
-                            itemBuilder: (_, index) {
-                              return GestureDetector(
-                                onTap: () {
-                                  BlocProvider.of<TaskCubit>(context)
-                                      .updateSelectedColor(index);
-                                },
-                                child: CircleAvatar(
-                                  backgroundColor:
+                          SizedBox(
+                            height: 50.h,
+                            child: ListView.separated(
+                                scrollDirection: Axis.horizontal,
+                                itemCount: BlocProvider.of<TaskCubit>(context)
+                                    .colors
+                                    .length,
+                                separatorBuilder: (_, index) =>
+                                    SizedBox(width: 8.w),
+                                itemBuilder: (_, index) {
+                                  return GestureDetector(
+                                    onTap: () {
                                       BlocProvider.of<TaskCubit>(context)
-                                          .colors[index],
-                                  child: BlocProvider.of<TaskCubit>(context)
-                                              .selectedColorIndex ==
-                                          index
-                                      ? const Icon(Icons.check)
-                                      : null,
-                                ),
-                              );
-                            }),
+                                          .updateSelectedColor(index);
+                                    },
+                                    child: CircleAvatar(
+                                      backgroundColor:
+                                          BlocProvider.of<TaskCubit>(context)
+                                              .colors[index],
+                                      child: BlocProvider.of<TaskCubit>(context)
+                                                  .selectedColorIndex ==
+                                              index
+                                          ? const Icon(Icons.check)
+                                          : null,
+                                    ),
+                                  );
+                                }),
+                          ),
+                        ],
                       ),
                     ],
                   ),
                 ),
+                //ToDo Create Task
                 CustomBtn(
                   customTextTheme: customTextTheme,
                   title: "Create Task",

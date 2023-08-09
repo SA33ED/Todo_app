@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:intl/intl.dart';
 import 'package:to_do_app/cubit/cubit/task_state.dart';
 
@@ -143,6 +144,15 @@ class TaskCubit extends Cubit<TaskState> {
       emit(AddTaskLoadingState());
       tasksList.add(task);
       emit(AddTaskSucssesState());
+      Fluttertoast.showToast(
+        msg: "This is Center Short Toast",
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.CENTER,
+        timeInSecForIosWeb: 1,
+        backgroundColor: Colors.green,
+        textColor: Colors.white,
+        fontSize: 16.0,
+      );
     } catch (e) {
       emit(AddTaskErrorState());
     }
