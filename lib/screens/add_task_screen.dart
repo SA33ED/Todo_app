@@ -1,5 +1,3 @@
-// ignore_for_file: must_be_immutable
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -13,9 +11,7 @@ import '../cubit/cubit/task_state.dart';
 
 class AddTaskScreen extends StatelessWidget {
   static String id = "AddTaskScreen";
-
   const AddTaskScreen({super.key});
-
   @override
   Widget build(BuildContext context) {
     TextTheme customTextTheme = Theme.of(context).textTheme;
@@ -79,7 +75,6 @@ class AddTaskScreen extends StatelessWidget {
                         readOnly: true,
                       ),
                       SizedBox(height: 24.h),
-
                       //ToDo Start-End Time
                       Row(children: [
                         Expanded(

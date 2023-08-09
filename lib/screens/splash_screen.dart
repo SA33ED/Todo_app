@@ -4,7 +4,6 @@ import 'package:to_do_app/helpers/app_assets.dart';
 import 'package:to_do_app/helpers/app_cashe.dart';
 import 'package:to_do_app/helpers/app_strings.dart';
 import 'package:to_do_app/screens/home_screen.dart';
-
 import 'on_boarding_screen.dart';
 
 class SplashScreen extends StatefulWidget {

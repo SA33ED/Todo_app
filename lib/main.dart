@@ -11,12 +11,21 @@ import 'screens/on_boarding_screen.dart';
 import 'screens/splash_screen.dart';
 
 void main() async {
+  //Shared Preferencess
   WidgetsFlutterBinding.ensureInitialized();
   await AppCashe.init();
-  runApp(BlocProvider(
-    create: (context) => TaskCubit(),
-    child: const ToDoApp(),
-  ));
+  runApp(
+    //Bloc & Cubit
+    MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => TaskCubit(),
+        ),
+      ],
+      //Runing My App
+      child: const ToDoApp(),
+    ),
+  );
 }
 
 class ToDoApp extends StatelessWidget {
@@ -43,6 +52,7 @@ class ToDoApp extends StatelessWidget {
   }
 }
 
+//App Theme
 ThemeData getThemeData() {
   return ThemeData(
     scaffoldBackgroundColor: AppColors.primary,
