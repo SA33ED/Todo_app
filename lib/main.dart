@@ -6,7 +6,6 @@ import 'package:to_do_app/cubit/cubit/task_cubit.dart';
 import 'package:to_do_app/helpers/app_cashe.dart';
 import 'package:to_do_app/helpers/app_colors.dart';
 import 'package:to_do_app/screens/add_task_screen.dart';
-
 import 'screens/home_screen.dart';
 import 'screens/on_boarding_screen.dart';
 import 'screens/splash_screen.dart';
