@@ -7,7 +7,7 @@ class SqfLiteHelper {
   late Database db;
 
 //! init DataBase
-   void intiDB() async {
+  intiDB() async {
     //Create DATABASE
     await openDatabase(
       "tasks.db",
@@ -40,11 +40,11 @@ class SqfLiteHelper {
   }
 
 //! insert
-  Future<int> insertTODB(TaskModel model) async {
+  Future<int> insertToDB(TaskModel model) async {
     return await db.rawInsert('''
          INSERT INTO Tasks(title, note, date, startTime, endTime, color, complete)
          VALUES (${model.title},${model.note},${model.date.toString()},${model.startTime},
-         ${model.endTime},${model.status})
+        //  ${model.endTime},${1},${model.status})
         ''');
   }
 }

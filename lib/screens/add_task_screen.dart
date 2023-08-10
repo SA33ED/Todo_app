@@ -4,7 +4,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
 import 'package:to_do_app/cubit/task_cubit.dart';
 import 'package:to_do_app/helpers/app_colors.dart';
-import 'package:to_do_app/models/task_model.dart';
 import 'package:to_do_app/widgets/custom_btn_widget.dart';
 import 'package:to_do_app/widgets/custom_input_field.dart';
 import '../cubit/task_state.dart';
@@ -63,8 +62,7 @@ class AddTaskScreen extends StatelessWidget {
                       //ToDo Date
                       CustomTextField(
                         title: "Date",
-                        hint: DateFormat.yMd().format(
-                            BlocProvider.of<TaskCubit>(context).selectedDate!),
+                        hint: DateFormat.yMd().format(BlocProvider.of<TaskCubit>(context).selectedDate!),
                         suffixIcon: IconButton(
                           onPressed: () async {
                             BlocProvider.of<TaskCubit>(context)
@@ -161,25 +159,7 @@ class AddTaskScreen extends StatelessWidget {
                   customTextTheme: customTextTheme,
                   title: "Create Task",
                   onTap: () {
-                    BlocProvider.of<TaskCubit>(context).addTask(
-                      TaskModel(
-                        id: 5,
-                        title:
-                            BlocProvider.of<TaskCubit>(context).selectedTitle ??
-                                "Untitled",
-                        note:
-                            BlocProvider.of<TaskCubit>(context).selectedNote ??
-                                "Empty",
-                        date: BlocProvider.of<TaskCubit>(context).selectedDate!,
-                        startTime: BlocProvider.of<TaskCubit>(context)
-                            .selectedStartTime,
-                        endTime:
-                            BlocProvider.of<TaskCubit>(context).selectedEndTime,
-                        color: BlocProvider.of<TaskCubit>(context).colors[
-                            BlocProvider.of<TaskCubit>(context)
-                                .selectedColorIndex],
-                      ),
-                    );
+                    BlocProvider.of<TaskCubit>(context).addTask();
                     Navigator.pop(context);
                   },
                 )

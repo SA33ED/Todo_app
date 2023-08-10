@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:to_do_app/cubit/task_cubit.dart';
 import 'package:to_do_app/models/task_model.dart';
 
 import '../helpers/app_colors.dart';
@@ -20,7 +22,7 @@ class TaskItem extends StatelessWidget {
         padding: const EdgeInsets.all(10),
         height: 128,
         decoration: BoxDecoration(
-          color: taskmodel.color,
+          color: BlocProvider.of<TaskCubit>(context).colors[taskmodel.color!],
           borderRadius: BorderRadius.circular(16),
         ),
         child: Row(

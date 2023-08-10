@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:intl/intl.dart';
 import 'package:to_do_app/cubit/task_state.dart';
 
 import '../helpers/app_colors.dart';
+import '../helpers/sqflite_helper.dart';
 import '../models/task_model.dart';
 
 class TaskCubit extends Cubit<TaskState> {
   GlobalKey<FormState> formKey = GlobalKey();
 
   TaskCubit() : super(TaskInitial());
-
+//!New Task Data Started
   String? selectedTitle;
 
   String? selectedNote;
@@ -20,10 +20,16 @@ class TaskCubit extends Cubit<TaskState> {
 
   String selectedStartTime = DateFormat('hh:mm a').format(DateTime.now());
 
-  String selectedEndTime = DateFormat('hh:mm a')
-      .format(DateTime.now().add(const Duration(hours: 1)));
+  String selectedEndTime = DateFormat('hh:mm a').format(
+    DateTime.now().add(
+      const Duration(hours: 1),
+    ),
+  );
 
   int selectedColorIndex = 0;
+//!New Task Data Ended
+
+  DateTime? selectedTitleDate = DateTime.now();
 
   List<Color> colors = [
     AppColors.red,
@@ -35,68 +41,68 @@ class TaskCubit extends Cubit<TaskState> {
   ];
 
   List<TaskModel> tasksList = [
-    TaskModel(
-      id: 1,
-      title: "Task One",
-      note: "Learning Dart",
-      date: DateTime.now(),
-      startTime: "09:33 AM",
-      endTime: "09:45 PM",
-    ),
+    // TaskModel(
+    //   id: 1,
+    //   title: "Task One",
+    //   note: "Learning Dart",
+    //   date: DateTime.now(),
+    //   startTime: "09:33 AM",
+    //   endTime: "09:45 PM",
+    // ),
     TaskModel(
       id: 2,
       title: "Task Two",
       note: "Learning Flutter",
-      date: DateTime.now(),
+      date: DateFormat.yMd().format(DateTime.now()),
       startTime: "10:33 AM",
       endTime: "10:45 PM",
       status: "Completed",
-      color: AppColors.lightBlue,
+      color: 2,
     ),
-    TaskModel(
-      id: 3,
-      title: "Task One",
-      note: "Learning Dart",
-      date: DateTime.now(),
-      startTime: "09:33 AM",
-      endTime: "09:45 PM",
-      color: AppColors.purble,
-    ),
-    TaskModel(
-      id: 4,
-      title: "Task Two",
-      note: "Learning Flutter",
-      date: DateTime.now(),
-      startTime: "10:33 AM",
-      endTime: "10:45 PM",
-      status: "Completed",
-      color: AppColors.customYellow,
-    ),
-    TaskModel(
-      id: 5,
-      title: "Task One",
-      note: "Learning Dart",
-      date: DateTime.now(),
-      startTime: "09:33 AM",
-      endTime: "09:45 PM",
-    ),
-    TaskModel(
-      id: 6,
-      title: "Task Two",
-      note: "Learning Flutter",
-      date: DateTime.now(),
-      startTime: "10:33 AM",
-      endTime: "10:45 PM",
-      status: "Completed",
-      color: AppColors.green,
-    ),
+    // TaskModel(
+    //   id: 3,
+    //   title: "Task One",
+    //   note: "Learning Dart",
+    //   date: DateTime.now(),
+    //   startTime: "09:33 AM",
+    //   endTime: "09:45 PM",
+    //   color: AppColors.purble,
+    // ),
+    // TaskModel(
+    //   id: 4,
+    //   title: "Task Two",
+    //   note: "Learning Flutter",
+    //   date: DateTime.now(),
+    //   startTime: "10:33 AM",
+    //   endTime: "10:45 PM",
+    //   status: "Completed",
+    //   color: AppColors.customYellow,
+    // ),
+    // TaskModel(
+    //   id: 5,
+    //   title: "Task One",
+    //   note: "Learning Dart",
+    //   date: DateTime.now(),
+    //   startTime: "09:33 AM",
+    //   endTime: "09:45 PM",
+    // ),
+    // TaskModel(
+    //   id: 6,
+    //   title: "Task Two",
+    //   note: "Learning Flutter",
+    //   date: DateTime.now(),
+    //   startTime: "10:33 AM",
+    //   endTime: "10:45 PM",
+    //   status: "Completed",
+    //   color: AppColors.green,
+    // ),
   ];
 
   void getDate(context) async {
     emit(GetDateLoadingState());
     DateTime? pickedDate = await showDatePicker(
       context: context,
-      initialDate: selectedDate ?? DateTime.now(),
+      initialDate: selectedTitleDate ?? DateTime.now(),
       firstDate: DateTime.now(),
       lastDate: DateTime(2025),
     );
@@ -106,9 +112,9 @@ class TaskCubit extends Cubit<TaskState> {
     }
   }
 
-  void getselectedDate(date) {
+  void getselectedTitleDate(date) {
     emit(GetSelectedDateLoadingState());
-    selectedDate = date;
+    selectedTitleDate = date;
     emit(GetSelectedDateSucessState());
   }
 
@@ -141,22 +147,48 @@ class TaskCubit extends Cubit<TaskState> {
     emit(UpdateSelectedColorState());
   }
 
-  void addTask(TaskModel task) {
+  void addTask() {
+    emit(AddTaskLoadingState());
     try {
-      emit(AddTaskLoadingState());
-      tasksList.add(task);
-      emit(AddTaskSucssesState());
-      Fluttertoast.showToast(
-        msg: "This is Center Short Toast",
-        toastLength: Toast.LENGTH_SHORT,
-        gravity: ToastGravity.CENTER,
-        timeInSecForIosWeb: 1,
-        backgroundColor: Colors.green,
-        textColor: Colors.white,
-        fontSize: 16.0,
-      );
+      // tasksList.add(TaskModel(
+      //   id: 5,
+      //   title: selectedTitle ?? "Untitled",
+      //   note: selectedNote ?? "Empty",
+      //   date: DateFormat.yMd().format(selectedDate!),
+      //   startTime: selectedStartTime,
+      //   endTime: selectedEndTime,
+      //   color: selectedColorIndex,
+      // ));
+      // emit(AddTaskSucssesState());
+      // Fluttertoast.showToast(
+      //   msg: "This is Center Short Toast",
+      //   toastLength: Toast.LENGTH_SHORT,
+      //   gravity: ToastGravity.CENTER,
+      //   timeInSecForIosWeb: 1,
+      //   backgroundColor: Colors.green,
+      //   textColor: Colors.white,
+      //   fontSize: 16.0,
+      // );
+      SqfLiteHelper().insertToDB(TaskModel(
+        title: selectedTitle ?? "Untitled",
+        note: selectedNote ?? "Empty",
+        date: DateFormat.yMd().format(selectedDate!),
+        startTime: selectedStartTime,
+        endTime: selectedEndTime,
+        color: selectedColorIndex,
+      ));
     } catch (e) {
       emit(AddTaskErrorState());
+    }
+  }
+
+  void deleteAllTasks() {
+    emit(DeleteAllTasksLoadingState());
+    try {
+      tasksList.clear();
+      emit(DeleteAllTasksSucssesState());
+    } catch (e) {
+      emit(DeleteAllTasksErrorState());
     }
   }
 }

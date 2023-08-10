@@ -15,7 +15,6 @@ void main() async {
   //Shared Preferencess
   WidgetsFlutterBinding.ensureInitialized();
   await AppCashe.init();
-  SqfLiteHelper().intiDB();
   runApp(
     //Bloc & Cubit
     MultiBlocProvider(

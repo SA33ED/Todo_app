@@ -1,23 +1,20 @@
-import 'package:flutter/material.dart';
-import 'package:to_do_app/helpers/app_colors.dart';
-
 class TaskModel {
-  int id;
+  int? id;
   String title;
   String note;
-  DateTime date;
+  String date;
   String startTime;
   String endTime;
   String? status;
-  Color? color;
+  int? color;
   TaskModel({
-    required this.id,
+    this.id,
     required this.title,
     required this.note,
     required this.date,
     required this.startTime,
     required this.endTime,
-    this.color = AppColors.red,
+    this.color = 1,
     this.status = "TODO",
-  }); 
+  });
 }

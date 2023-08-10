@@ -25,7 +25,7 @@ class HomeScreen extends StatelessWidget {
                 //!Date
                 Text(
                   DateFormat.yMMMMd().format(
-                    BlocProvider.of<TaskCubit>(context).selectedDate!,
+                    BlocProvider.of<TaskCubit>(context).selectedTitleDate!,
                   ),
                   style: customTextTheme.displayLarge!.copyWith(fontSize: 24),
                 ),
@@ -50,10 +50,13 @@ class HomeScreen extends StatelessWidget {
                   dayTextStyle: customTextTheme.displayMedium!,
                   dateTextStyle: customTextTheme.displayMedium!,
                   onDateChange: (date) {
-                    BlocProvider.of<TaskCubit>(context).getselectedDate(date);
+                    BlocProvider.of<TaskCubit>(context)
+                        .getselectedTitleDate(date);
                   },
                 ),
                 const SizedBox(height: 32),
+
+                //!Tasks
                 BlocProvider.of<TaskCubit>(context).tasksList.isEmpty
                     ? NoTasksWidgets(customTextTheme: customTextTheme)
                     : Column(
