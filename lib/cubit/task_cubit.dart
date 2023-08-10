@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:intl/intl.dart';
-import 'package:to_do_app/cubit/cubit/task_state.dart';
+import 'package:to_do_app/cubit/task_state.dart';
 
-import '../../helpers/app_colors.dart';
-import '../../models/task_model.dart';
+import '../helpers/app_colors.dart';
+import '../models/task_model.dart';
 
 class TaskCubit extends Cubit<TaskState> {
   GlobalKey<FormState> formKey = GlobalKey();
@@ -54,22 +54,24 @@ class TaskCubit extends Cubit<TaskState> {
       color: AppColors.lightBlue,
     ),
     TaskModel(
-        id: 3,
-        title: "Task One",
-        note: "Learning Dart",
-        date: DateTime.now(),
-        startTime: "09:33 AM",
-        endTime: "09:45 PM",
-        color: AppColors.purble),
+      id: 3,
+      title: "Task One",
+      note: "Learning Dart",
+      date: DateTime.now(),
+      startTime: "09:33 AM",
+      endTime: "09:45 PM",
+      color: AppColors.purble,
+    ),
     TaskModel(
-        id: 4,
-        title: "Task Two",
-        note: "Learning Flutter",
-        date: DateTime.now(),
-        startTime: "10:33 AM",
-        endTime: "10:45 PM",
-        status: "Completed",
-        color: AppColors.customYellow),
+      id: 4,
+      title: "Task Two",
+      note: "Learning Flutter",
+      date: DateTime.now(),
+      startTime: "10:33 AM",
+      endTime: "10:45 PM",
+      status: "Completed",
+      color: AppColors.customYellow,
+    ),
     TaskModel(
       id: 5,
       title: "Task One",

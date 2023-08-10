@@ -1,13 +1,13 @@
 import 'package:date_picker_timeline/date_picker_timeline.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:to_do_app/cubit/cubit/task_cubit.dart';
+import 'package:to_do_app/cubit/task_cubit.dart';
 import 'package:to_do_app/helpers/app_colors.dart';
 import 'package:intl/intl.dart';
-import 'package:to_do_app/screens/add_task_screen.dart';
-import '../cubit/cubit/task_state.dart';
+import '../cubit/task_state.dart';
 import '../widgets/no_task_widget.dart';
 import '../widgets/task_item.dart';
+import 'add_task_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   static String id = "HomeScreen";
@@ -77,6 +77,7 @@ class HomeScreen extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           Navigator.pushNamed(context, AddTaskScreen.id);
+          // BlocProvider.of<TaskCubit>(context).tasksList.clear();
         },
         backgroundColor: AppColors.secondary,
         child: const Icon(Icons.add),

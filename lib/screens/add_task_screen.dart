@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
-import 'package:to_do_app/cubit/cubit/task_cubit.dart';
+import 'package:to_do_app/cubit/task_cubit.dart';
 import 'package:to_do_app/helpers/app_colors.dart';
 import 'package:to_do_app/models/task_model.dart';
 import 'package:to_do_app/widgets/custom_btn_widget.dart';
 import 'package:to_do_app/widgets/custom_input_field.dart';
-import '../cubit/cubit/task_state.dart';
+import '../cubit/task_state.dart';
 
 class AddTaskScreen extends StatelessWidget {
   static String id = "AddTaskScreen";
