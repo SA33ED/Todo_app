@@ -43,7 +43,7 @@ class SqfLiteHelper {
   Future<int> insertToDB(TaskModel model) async {
     return await db.rawInsert('''
          INSERT INTO Tasks(title, note, date, startTime, endTime, color, complete)
-         VALUES ('${model.title}','${model.note}','${model.date.toString()}','${model.startTime}','${model.endTime}',${1},'${model.status}')
+         VALUES ('${model.title}','${model.note}','${model.date.toString()}','${model.startTime}','${model.endTime}',${model.color},'${model.status}')
         ''');
         
   }

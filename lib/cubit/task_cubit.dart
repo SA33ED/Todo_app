@@ -50,16 +50,16 @@ class TaskCubit extends Cubit<TaskState> {
     //   startTime: "09:33 AM",
     //   endTime: "09:45 PM",
     // ),
-    TaskModel(
-      id: 2,
-      title: "Task Two",
-      note: "Learning Flutter",
-      date: DateFormat.yMd().format(DateTime.now()),
-      startTime: "10:33 AM",
-      endTime: "10:45 PM",
-      status: "Completed",
-      color: 2,
-    ),
+    // TaskModel(
+    //   id: 2,
+    //   title: "Task Two",
+    //   note: "Learning Flutter",
+    //   date: DateFormat.yMd().format(DateTime.now()),
+    //   startTime: "10:33 AM",
+    //   endTime: "10:45 PM",
+    //   status: "Completed",
+    //   color: 2,
+    // ),
     // TaskModel(
     //   id: 3,
     //   title: "Task One",
@@ -148,29 +148,10 @@ class TaskCubit extends Cubit<TaskState> {
     emit(UpdateSelectedColorState());
   }
 
-  void addTask() {
+  void addTask() async {
     emit(AddTaskLoadingState());
     try {
-      // tasksList.add(TaskModel(
-      //   id: 5,
-      //   title: selectedTitle ?? "Untitled",
-      //   note: selectedNote ?? "Empty",
-      //   date: DateFormat.yMd().format(selectedDate!),
-      //   startTime: selectedStartTime,
-      //   endTime: selectedEndTime,
-      //   color: selectedColorIndex,
-      // ));
-      // emit(AddTaskSucssesState());
-      // Fluttertoast.showToast(
-      //   msg: "This is Center Short Toast",
-      //   toastLength: Toast.LENGTH_SHORT,
-      //   gravity: ToastGravity.CENTER,
-      //   timeInSecForIosWeb: 1,
-      //   backgroundColor: Colors.green,
-      //   textColor: Colors.white,
-      //   fontSize: 16.0,
-      // );
-      getIt<SqfLiteHelper>().insertToDB(TaskModel(
+      await getIt<SqfLiteHelper>().insertToDB(TaskModel(
         title: selectedTitle ?? "Untitled",
         note: selectedNote ?? "Empty",
         date: DateFormat.yMd().format(selectedDate!),
@@ -178,8 +159,21 @@ class TaskCubit extends Cubit<TaskState> {
         endTime: selectedEndTime,
         color: selectedColorIndex,
       ));
+      getTasks();
     } catch (e) {
       emit(AddTaskErrorState());
+    }
+  }
+
+  void getTasks() async {
+    emit(GetAllTasksLoadingState());
+    try {
+      await getIt<SqfLiteHelper>().getFromDB().then((value) {
+        tasksList = value.map((e) => TaskModel.fromJson(e)).toList();
+      });
+      emit(GetAllTasksSucssesState());
+    } catch (e) {
+      emit(GetAllTasksErrorState());
     }
   }
 

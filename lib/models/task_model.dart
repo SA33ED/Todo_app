@@ -17,4 +17,15 @@ class TaskModel {
     this.color = 1,
     this.status = "TODO",
   });
+  factory TaskModel.fromJson(Map<String, dynamic> jsonData) {
+    return TaskModel(
+      id: jsonData['id'],
+      title: jsonData['title'],
+      note: jsonData['note'],
+      date: jsonData['date'],
+      startTime: jsonData['startTime'],
+      endTime: jsonData['endTime'],
+      color: jsonData['color'],
+    );
+  }
 }

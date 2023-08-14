@@ -23,7 +23,7 @@ void main() async {
     MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (context) => TaskCubit(),
+          create: (context) => TaskCubit()..getTasks(),
         ),
       ],
       //Runing My App
