@@ -4,7 +4,7 @@ class AppCashe {
   static late SharedPreferences sharedPreferences;
 
 //Function To Initial Shared Preferences
-  static init() async {
+  init() async {
     sharedPreferences = await SharedPreferences.getInstance();
   }
 

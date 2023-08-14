@@ -1,0 +1,8 @@
+import 'package:get_it/get_it.dart';
+import 'package:to_do_app/helpers/app_cashe.dart';
+
+final getIt = GetIt.instance;
+
+void setup() {
+  getIt.registerLazySingleton<AppCashe>(() => AppCashe());
+}

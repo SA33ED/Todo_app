@@ -5,8 +5,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:to_do_app/cubit/task_cubit.dart';
 import 'package:to_do_app/helpers/app_cashe.dart';
 import 'package:to_do_app/helpers/app_colors.dart';
+import 'package:to_do_app/helpers/service_locator.dart';
 import 'package:to_do_app/screens/add_task_screen.dart';
-import 'helpers/sqflite_helper.dart';
 import 'screens/home_screen.dart';
 import 'screens/on_boarding_screen.dart';
 import 'screens/splash_screen.dart';
@@ -14,8 +14,9 @@ import 'screens/splash_screen.dart';
 void main() async {
   //Shared Preferencess
   WidgetsFlutterBinding.ensureInitialized();
-  await AppCashe.init();
-  SqfLiteHelper().intiDB();
+  setup();
+  await getIt<AppCashe>().init();
+  // SqfLiteHelper().intiDB();
   runApp(
     //Bloc & Cubit
     MultiBlocProvider(
