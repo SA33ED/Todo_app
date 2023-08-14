@@ -6,6 +6,7 @@ import 'package:to_do_app/cubit/task_cubit.dart';
 import 'package:to_do_app/helpers/app_cashe.dart';
 import 'package:to_do_app/helpers/app_colors.dart';
 import 'package:to_do_app/helpers/service_locator.dart';
+import 'package:to_do_app/helpers/sqflite_helper.dart';
 import 'package:to_do_app/screens/add_task_screen.dart';
 import 'screens/home_screen.dart';
 import 'screens/on_boarding_screen.dart';
@@ -16,7 +17,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   setup();
   await getIt<AppCashe>().init();
-  // SqfLiteHelper().intiDB();
+  await getIt<SqfLiteHelper>().initDB();
   runApp(
     //Bloc & Cubit
     MultiBlocProvider(

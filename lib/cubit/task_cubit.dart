@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:to_do_app/cubit/task_state.dart';
+import 'package:to_do_app/helpers/service_locator.dart';
 
 import '../helpers/app_colors.dart';
 import '../helpers/sqflite_helper.dart';
@@ -169,7 +170,7 @@ class TaskCubit extends Cubit<TaskState> {
       //   textColor: Colors.white,
       //   fontSize: 16.0,
       // );
-      SqfLiteHelper().insertToDB(TaskModel(
+      getIt<SqfLiteHelper>().insertToDB(TaskModel(
         title: selectedTitle ?? "Untitled",
         note: selectedNote ?? "Empty",
         date: DateFormat.yMd().format(selectedDate!),
