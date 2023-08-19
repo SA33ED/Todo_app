@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:to_do_app/cubit/task_state.dart';
 import 'package:to_do_app/helpers/service_locator.dart';
-
 import '../helpers/app_colors.dart';
 import '../helpers/sqflite_helper.dart';
 import '../models/task_model.dart';
@@ -174,6 +173,28 @@ class TaskCubit extends Cubit<TaskState> {
       emit(GetAllTasksSucssesState());
     } catch (e) {
       emit(GetAllTasksErrorState());
+    }
+  }
+
+  void updateTaskStatusToCompeleted(id) async {
+    emit(UpdateTaskLoadingState());
+    try {
+      await getIt<SqfLiteHelper>().updateTaskStatusToCompeletedDB(id);
+      getTasks();
+      emit(UpdateTaskSucssesState());
+    } catch (e) {
+      emit(UpdateTaskErrorState());
+    }
+  }
+
+  void updateTaskStatusToUnCompeleted(id) async {
+    emit(UpdateTaskLoadingState());
+    try {
+      await getIt<SqfLiteHelper>().updateTaskStatusToUnCompeleted(id);
+      getTasks();
+      emit(UpdateTaskSucssesState());
+    } catch (e) {
+      emit(UpdateTaskErrorState());
     }
   }
 

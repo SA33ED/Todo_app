@@ -26,6 +26,7 @@ class TaskModel {
       startTime: jsonData['startTime'],
       endTime: jsonData['endTime'],
       color: jsonData['color'],
+      status: jsonData['complete'],
     );
   }
 }

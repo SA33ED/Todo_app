@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:to_do_app/cubit/task_cubit.dart';
 import 'package:to_do_app/models/task_model.dart';
-
 import '../helpers/app_colors.dart';
 import 'custom_btn_widget.dart';
 
@@ -32,9 +31,14 @@ class TaskItem extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  taskmodel.title,
-                  style: customTextTheme.displayLarge!.copyWith(fontSize: 24),
+                SizedBox(
+                  width: 250,
+                  child: Text(
+                    taskmodel.title,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: customTextTheme.displayLarge!.copyWith(fontSize: 24),
+                  ),
                 ),
                 Row(
                   children: [
@@ -49,9 +53,14 @@ class TaskItem extends StatelessWidget {
                     )
                   ],
                 ),
-                Text(
-                  taskmodel.note,
-                  style: customTextTheme.displayLarge!.copyWith(fontSize: 24),
+                SizedBox(
+                  width: 250,
+                  child: Text(
+                    taskmodel.note,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: customTextTheme.displayLarge!.copyWith(fontSize: 24),
+                  ),
                 )
               ],
             ),
@@ -86,10 +95,25 @@ class TaskItem extends StatelessWidget {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    CustomBtn(
-                      customTextTheme: customTextTheme,
-                      title: "TASK COMPLETED",
-                    ),
+                    taskmodel.status == "TODO"
+                        ? CustomBtn(
+                            onTap: () {
+                              BlocProvider.of<TaskCubit>(context)
+                                  .updateTaskStatusToCompeleted(taskmodel.id);
+                              Navigator.pop(context);
+                            },
+                            customTextTheme: customTextTheme,
+                            title: "TASK COMPLETED",
+                          )
+                        : CustomBtn(
+                            onTap: () {
+                              BlocProvider.of<TaskCubit>(context)
+                                  .updateTaskStatusToUnCompeleted(taskmodel.id);
+                              Navigator.pop(context);
+                            },
+                            customTextTheme: customTextTheme,
+                            title: "TASK UNCOMPLETED",
+                          ),
                     const SizedBox(height: 24),
                     CustomBtn(
                       customTextTheme: customTextTheme,
@@ -98,6 +122,9 @@ class TaskItem extends StatelessWidget {
                     ),
                     const SizedBox(height: 24),
                     CustomBtn(
+                      onTap: () {
+                        Navigator.pop(context);
+                      },
                       customTextTheme: customTextTheme,
                       title: "CANCEL",
                     ),

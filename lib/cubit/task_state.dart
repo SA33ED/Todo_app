@@ -66,3 +66,10 @@ final class DeleteAllTasksLoadingState extends TaskState {}
 final class DeleteAllTasksSucssesState extends TaskState {}
 
 final class DeleteAllTasksErrorState extends TaskState {}
+
+//! Update Task States
+final class UpdateTaskLoadingState extends TaskState {}
+
+final class UpdateTaskSucssesState extends TaskState {}
+
+final class UpdateTaskErrorState extends TaskState {}

@@ -45,6 +45,17 @@ class SqfLiteHelper {
          INSERT INTO Tasks(title, note, date, startTime, endTime, color, complete)
          VALUES ('${model.title}','${model.note}','${model.date.toString()}','${model.startTime}','${model.endTime}',${model.color},'${model.status}')
         ''');
-        
+  }
+
+//!Update
+  Future<int> updateTaskStatusToCompeletedDB(int id) async {
+    return await db.rawUpdate(
+        ''' UPDATE Tasks SET complete = ? WHERE id = ? ''', ["COMPLETED", id]);
+  }
+
+//!Update
+  Future<int> updateTaskStatusToUnCompeleted(int id) async {
+    return await db.rawUpdate(
+        ''' UPDATE Tasks SET complete = ? WHERE id = ? ''', ["TODO", id]);
   }
 }

@@ -14,6 +14,7 @@ class AddTaskScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     TextTheme customTextTheme = Theme.of(context).textTheme;
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: AppColors.primary,
@@ -62,7 +63,8 @@ class AddTaskScreen extends StatelessWidget {
                       //ToDo Date
                       CustomTextField(
                         title: "Date",
-                        hint: DateFormat.yMd().format(BlocProvider.of<TaskCubit>(context).selectedDate!),
+                        hint: DateFormat.yMd().format(
+                            BlocProvider.of<TaskCubit>(context).selectedDate!),
                         suffixIcon: IconButton(
                           onPressed: () async {
                             BlocProvider.of<TaskCubit>(context)

@@ -53,6 +53,7 @@ class CustomTextField extends StatelessWidget {
         TextFormField(
           controller: controller,
           validator: validator,
+          style: const TextStyle(color: AppColors.whiteText),
           decoration: InputDecoration(
             hintStyle: Theme.of(context).textTheme.displayMedium,
             fillColor: const Color(0xFF1C1C1C),
