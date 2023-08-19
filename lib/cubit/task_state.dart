@@ -9,11 +9,11 @@ final class GetDateSucessState extends TaskState {}
 
 final class GetDateErrorState extends TaskState {}
 
-final class GetSelectedDateLoadingState extends TaskState {}
+final class GetSelectedTitleDateLoadingState extends TaskState {}
 
-final class GetSelectedDateSucessState extends TaskState {}
+final class GetSelectedTitleDateSucessState extends TaskState {}
 
-final class GetSelectedDateErrorState extends TaskState {}
+final class GetSelectedTitleDateErrorState extends TaskState {}
 
 //---------------------Date Ended------------------
 

@@ -39,7 +39,7 @@ class HomeScreen extends StatelessWidget {
                 const SizedBox(height: 20),
                 //!Date Picker
                 DatePicker(
-                  DateTime.now(),
+                  DateTime.now().subtract(const Duration(days: 2)),
                   height: 110,
                   width: 60,
                   initialSelectedDate: DateTime.now(),
@@ -80,7 +80,6 @@ class HomeScreen extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           Navigator.pushNamed(context, AddTaskScreen.id);
-          // BlocProvider.of<TaskCubit>(context).tasksList.clear();
         },
         backgroundColor: AppColors.secondary,
         child: const Icon(Icons.add),

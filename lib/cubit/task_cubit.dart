@@ -42,63 +42,7 @@ class TaskCubit extends Cubit<TaskState> {
     AppColors.purble,
   ];
 
-  List<TaskModel> tasksList = [
-    // TaskModel(
-    //   id: 1,
-    //   title: "Task One",
-    //   note: "Learning Dart",
-    //   date: DateTime.now(),
-    //   startTime: "09:33 AM",
-    //   endTime: "09:45 PM",
-    // ),
-    // TaskModel(
-    //   id: 2,
-    //   title: "Task Two",
-    //   note: "Learning Flutter",
-    //   date: DateFormat.yMd().format(DateTime.now()),
-    //   startTime: "10:33 AM",
-    //   endTime: "10:45 PM",
-    //   status: "Completed",
-    //   color: 2,
-    // ),
-    // TaskModel(
-    //   id: 3,
-    //   title: "Task One",
-    //   note: "Learning Dart",
-    //   date: DateTime.now(),
-    //   startTime: "09:33 AM",
-    //   endTime: "09:45 PM",
-    //   color: AppColors.purble,
-    // ),
-    // TaskModel(
-    //   id: 4,
-    //   title: "Task Two",
-    //   note: "Learning Flutter",
-    //   date: DateTime.now(),
-    //   startTime: "10:33 AM",
-    //   endTime: "10:45 PM",
-    //   status: "Completed",
-    //   color: AppColors.customYellow,
-    // ),
-    // TaskModel(
-    //   id: 5,
-    //   title: "Task One",
-    //   note: "Learning Dart",
-    //   date: DateTime.now(),
-    //   startTime: "09:33 AM",
-    //   endTime: "09:45 PM",
-    // ),
-    // TaskModel(
-    //   id: 6,
-    //   title: "Task Two",
-    //   note: "Learning Flutter",
-    //   date: DateTime.now(),
-    //   startTime: "10:33 AM",
-    //   endTime: "10:45 PM",
-    //   status: "Completed",
-    //   color: AppColors.green,
-    // ),
-  ];
+  List<TaskModel> tasksList = [];
 
   void getDate(context) async {
     emit(GetDateLoadingState());
@@ -115,9 +59,14 @@ class TaskCubit extends Cubit<TaskState> {
   }
 
   void getselectedTitleDate(date) {
-    emit(GetSelectedDateLoadingState());
-    selectedTitleDate = date;
-    emit(GetSelectedDateSucessState());
+    emit(GetSelectedTitleDateLoadingState());
+    try {
+      selectedTitleDate = date;
+      getTasks();
+      emit(GetSelectedTitleDateSucessState());
+    } catch (e) {
+      emit(GetSelectedTitleDateErrorState());
+    }
   }
 
   void getStartTime(context) async {
@@ -174,7 +123,12 @@ class TaskCubit extends Cubit<TaskState> {
     emit(GetAllTasksLoadingState());
     try {
       await getIt<SqfLiteHelper>().getFromDB().then((value) {
-        tasksList = value.map((e) => TaskModel.fromJson(e)).toList();
+        tasksList = value
+            .map((e) => TaskModel.fromJson(e))
+            .toList()
+            .where((element) =>
+                element.date == DateFormat.yMd().format(selectedTitleDate!))
+            .toList();
       });
       emit(GetAllTasksSucssesState());
     } catch (e) {
