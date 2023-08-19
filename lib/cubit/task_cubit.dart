@@ -28,7 +28,9 @@ class TaskCubit extends Cubit<TaskState> {
 
   int selectedColorIndex = 0;
 //!New Task Data Ended
+  TextEditingController titleController = TextEditingController();
 
+  TextEditingController noteController = TextEditingController();
   DateTime? selectedTitleDate = DateTime.now();
 
   List<Color> colors = [
@@ -159,6 +161,10 @@ class TaskCubit extends Cubit<TaskState> {
         color: selectedColorIndex,
       ));
       getTasks();
+      titleController.clear();
+      noteController.clear();
+      selectedTitle = "Untitled";
+      selectedNote = "Empty";
     } catch (e) {
       emit(AddTaskErrorState());
     }

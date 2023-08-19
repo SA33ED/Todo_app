@@ -46,6 +46,8 @@ class AddTaskScreen extends StatelessWidget {
                     children: [
                       //ToDo Title
                       CustomTextField(
+                        controller:
+                            BlocProvider.of<TaskCubit>(context).titleController,
                         title: "Title",
                         hint: "Enter title here",
                         onChanged: (data) => BlocProvider.of<TaskCubit>(context)
@@ -54,6 +56,8 @@ class AddTaskScreen extends StatelessWidget {
                       SizedBox(height: 24.h),
                       //ToDo Note
                       CustomTextField(
+                        controller:
+                            BlocProvider.of<TaskCubit>(context).noteController,
                         title: "Note",
                         hint: "Enter note here",
                         onChanged: (data) => BlocProvider.of<TaskCubit>(context)
