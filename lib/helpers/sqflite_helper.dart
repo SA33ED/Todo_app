@@ -58,4 +58,9 @@ class SqfLiteHelper {
     return await db.rawUpdate(
         ''' UPDATE Tasks SET complete = ? WHERE id = ? ''', ["TODO", id]);
   }
+
+//!Delete
+  Future<int> deleteTaskFormDB(int id) async {
+    return await db.rawUpdate(''' DELETE FROM Tasks WHERE id = ? ''', [id]);
+  }
 }

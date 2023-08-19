@@ -116,6 +116,11 @@ class TaskItem extends StatelessWidget {
                           ),
                     const SizedBox(height: 24),
                     CustomBtn(
+                      onTap: () {
+                        BlocProvider.of<TaskCubit>(context)
+                            .deleteTask(taskmodel.id);
+                        Navigator.pop(context);
+                      },
                       customTextTheme: customTextTheme,
                       btnColor: AppColors.red,
                       title: "DELETE TASK",
