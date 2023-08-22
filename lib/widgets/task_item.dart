@@ -21,7 +21,9 @@ class TaskItem extends StatelessWidget {
         padding: const EdgeInsets.all(10),
         height: 128,
         decoration: BoxDecoration(
-          color: BlocProvider.of<TaskCubit>(context).colors[taskmodel.color!],
+          color: taskmodel.status == "TODO"
+              ? BlocProvider.of<TaskCubit>(context).colors[taskmodel.color!]
+              : Colors.grey,
           borderRadius: BorderRadius.circular(16),
         ),
         child: Row(
@@ -37,7 +39,12 @@ class TaskItem extends StatelessWidget {
                     taskmodel.title,
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
-                    style: customTextTheme.displayLarge!.copyWith(fontSize: 24),
+                    style: customTextTheme.displayLarge!.copyWith(
+                      fontSize: 24,
+                      decoration: taskmodel.status != "TODO"
+                          ? TextDecoration.lineThrough
+                          : null,
+                    ),
                   ),
                 ),
                 Row(
@@ -48,8 +55,12 @@ class TaskItem extends StatelessWidget {
                     ),
                     const SizedBox(width: 10),
                     Text(
-                      "${taskmodel.startTime} PM - ${taskmodel.endTime} PM",
-                      style: customTextTheme.displayMedium,
+                      "${taskmodel.startTime} - ${taskmodel.endTime}",
+                      style: customTextTheme.displayMedium!.copyWith(
+                        decoration: taskmodel.status != "TODO"
+                            ? TextDecoration.lineThrough
+                            : null,
+                      ),
                     )
                   ],
                 ),
@@ -59,7 +70,12 @@ class TaskItem extends StatelessWidget {
                     taskmodel.note,
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
-                    style: customTextTheme.displayLarge!.copyWith(fontSize: 24),
+                    style: customTextTheme.displayLarge!.copyWith(
+                      fontSize: 24,
+                      decoration: taskmodel.status != "TODO"
+                          ? TextDecoration.lineThrough
+                          : null,
+                    ),
                   ),
                 )
               ],
