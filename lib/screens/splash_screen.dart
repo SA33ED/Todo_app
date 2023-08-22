@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:to_do_app/helpers/app_assets.dart';
 import 'package:to_do_app/helpers/app_cashe.dart';
+import 'package:to_do_app/helpers/app_colors.dart';
 import 'package:to_do_app/helpers/app_strings.dart';
 import 'package:to_do_app/helpers/service_locator.dart';
 import 'package:to_do_app/screens/home_screen.dart';
@@ -41,7 +43,11 @@ class _SplashScreenState extends State<SplashScreen> {
             SvgPicture.asset(Assets.imagesAppLogo),
             const SizedBox(height: 30),
             Text(AppStrings.appName,
-                style: Theme.of(context).textTheme.bodyLarge!),
+                style: GoogleFonts.lato(
+                  color: AppColors.whiteText,
+                  fontSize: 40,
+                  fontWeight: FontWeight.w600,
+                )),
           ],
         ),
       ),

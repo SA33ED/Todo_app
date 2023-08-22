@@ -63,7 +63,7 @@ ThemeData getThemeData() {
     textTheme: TextTheme(
         bodyLarge: GoogleFonts.lato(
           color: AppColors.whiteText,
-          fontSize: 40,
+          fontSize: 24,
           fontWeight: FontWeight.w600,
         ),
         displayLarge: GoogleFonts.lato(
