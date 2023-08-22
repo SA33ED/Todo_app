@@ -42,126 +42,149 @@ class _CustomOnBoardingWidgetState extends State<CustomOnBoardingWidget> {
       },
       itemCount: widget.dataList.length,
       itemBuilder: (_, i) {
-        return Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(left: 20.0),
-                  child: InkWell(
-                    onTap: widget.startBtnOnTapFunction,
-                    child: Text(
-                      "SKIP",
-                      style: GoogleFonts.lato(color: widget.titleColor),
+        return SizedBox(
+          height: MediaQuery.of(context).size.height,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              Expanded(
+                child: ListView(
+                  children: [
+                    const SizedBox(
+                      height: 50,
                     ),
-                  ),
-                ),
-              ],
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 15.0),
-              child: Column(
-                children: [
-                  SvgPicture.asset(widget.dataList[i].image, width: 300),
-                  const SizedBox(height: 30),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: List.generate(
-                      widget.dataList.length,
-                      (index) {
-                        return Container(
-                          width: index == currentIndex ? 30 : 20,
-                          height: 5,
-                          margin: const EdgeInsets.only(right: 5),
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(20),
-                            color: index == currentIndex
-                                ? Colors.white
-                                : Colors.grey,
-                          ),
-                        );
-                      },
-                    ),
-                  ),
-                  const SizedBox(height: 20),
-                  Text(
-                    widget.dataList[i].title,
-                    style: Theme.of(context).textTheme.displayLarge,
-                  ),
-                  const SizedBox(height: 20),
-                  Text(
-                    widget.dataList[i].subTitle,
-                    style: Theme.of(context).textTheme.displayMedium,
-                    textAlign: TextAlign.center,
-                  ),
-                ],
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  currentIndex == 0
-                      ? Expanded(
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              const Spacer(flex: 1),
-                              NextBtn(
-                                controller: _controller!,
-                                themeColor: widget.themeColor,
-                              ),
-                            ],
-                          ),
-                        )
-                      : currentIndex == widget.dataList.length - 1
-                          ? Expanded(
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  BackBtn(
-                                    controller: _controller!,
-                                    themeColor: widget.themeColor,
-                                  ),
-                                  StartBtn(
-                                    themeColor: widget.themeColor,
-                                    onTap: widget.startBtnOnTapFunction,
-                                  ),
-                                ],
-                              ),
-                            )
-                          : Expanded(
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  GestureDetector(
-                                    onTap: () {
-                                      _controller!.previousPage(
-                                          duration:
-                                              const Duration(milliseconds: 100),
-                                          curve: Curves.bounceIn);
-                                    },
-                                    child: BackBtn(
-                                      controller: _controller!,
-                                      themeColor: widget.themeColor,
-                                    ),
-                                  ),
-                                  NextBtn(
-                                    controller: _controller!,
-                                    themeColor: widget.themeColor,
-                                  ),
-                                ],
-                              ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(left: 20.0),
+                          child: InkWell(
+                            onTap: widget.startBtnOnTapFunction,
+                            child: Text(
+                              "SKIP",
+                              style: GoogleFonts.lato(color: widget.titleColor),
                             ),
-                ],
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(
+                      height: 50,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 15.0),
+                      child: Column(
+                        children: [
+                          SvgPicture.asset(widget.dataList[i].image,
+                              width: 300),
+                          const SizedBox(height: 30),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: List.generate(
+                              widget.dataList.length,
+                              (index) {
+                                return Container(
+                                  width: index == currentIndex ? 30 : 20,
+                                  height: 5,
+                                  margin: const EdgeInsets.only(right: 5),
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(20),
+                                    color: index == currentIndex
+                                        ? Colors.white
+                                        : Colors.grey,
+                                  ),
+                                );
+                              },
+                            ),
+                          ),
+                          const SizedBox(height: 20),
+                          Text(
+                            widget.dataList[i].title,
+                            style: Theme.of(context).textTheme.displayLarge,
+                          ),
+                          const SizedBox(height: 20),
+                          Text(
+                            widget.dataList[i].subTitle,
+                            style: Theme.of(context).textTheme.displayMedium,
+                            textAlign: TextAlign.center,
+                          ),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 50,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          currentIndex == 0
+                              ? Expanded(
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      const Spacer(flex: 1),
+                                      NextBtn(
+                                        controller: _controller!,
+                                        themeColor: widget.themeColor,
+                                      ),
+                                    ],
+                                  ),
+                                )
+                              : currentIndex == widget.dataList.length - 1
+                                  ? Expanded(
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          BackBtn(
+                                            controller: _controller!,
+                                            themeColor: widget.themeColor,
+                                          ),
+                                          StartBtn(
+                                            themeColor: widget.themeColor,
+                                            onTap: widget.startBtnOnTapFunction,
+                                          ),
+                                        ],
+                                      ),
+                                    )
+                                  : Expanded(
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          GestureDetector(
+                                            onTap: () {
+                                              _controller!.previousPage(
+                                                  duration: const Duration(
+                                                      milliseconds: 100),
+                                                  curve: Curves.bounceIn);
+                                            },
+                                            child: BackBtn(
+                                              controller: _controller!,
+                                              themeColor: widget.themeColor,
+                                            ),
+                                          ),
+                                          NextBtn(
+                                            controller: _controller!,
+                                            themeColor: widget.themeColor,
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 50,
+                    ),
+                  ],
+                ),
               ),
-            )
-          ],
+            ],
+          ),
         );
       },
     );
