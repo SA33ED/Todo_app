@@ -111,78 +111,72 @@ class _CustomOnBoardingWidgetState extends State<CustomOnBoardingWidget> {
                         ],
                       ),
                     ),
-                    const SizedBox(
-                      height: 50,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          currentIndex == 0
-                              ? Expanded(
-                                  child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      const Spacer(flex: 1),
-                                      NextBtn(
-                                        controller: _controller!,
-                                        themeColor: widget.themeColor,
-                                      ),
-                                    ],
-                                  ),
-                                )
-                              : currentIndex == widget.dataList.length - 1
-                                  ? Expanded(
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          BackBtn(
-                                            controller: _controller!,
-                                            themeColor: widget.themeColor,
-                                          ),
-                                          StartBtn(
-                                            themeColor: widget.themeColor,
-                                            onTap: widget.startBtnOnTapFunction,
-                                          ),
-                                        ],
-                                      ),
-                                    )
-                                  : Expanded(
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          GestureDetector(
-                                            onTap: () {
-                                              _controller!.previousPage(
-                                                  duration: const Duration(
-                                                      milliseconds: 100),
-                                                  curve: Curves.bounceIn);
-                                            },
-                                            child: BackBtn(
-                                              controller: _controller!,
-                                              themeColor: widget.themeColor,
-                                            ),
-                                          ),
-                                          NextBtn(
-                                            controller: _controller!,
-                                            themeColor: widget.themeColor,
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                        ],
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 50,
-                    ),
                   ],
                 ),
               ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    currentIndex == 0
+                        ? Expanded(
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                const Spacer(flex: 1),
+                                NextBtn(
+                                  controller: _controller!,
+                                  themeColor: widget.themeColor,
+                                ),
+                              ],
+                            ),
+                          )
+                        : currentIndex == widget.dataList.length - 1
+                            ? Expanded(
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    BackBtn(
+                                      controller: _controller!,
+                                      themeColor: widget.themeColor,
+                                    ),
+                                    StartBtn(
+                                      themeColor: widget.themeColor,
+                                      onTap: widget.startBtnOnTapFunction,
+                                    ),
+                                  ],
+                                ),
+                              )
+                            : Expanded(
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    GestureDetector(
+                                      onTap: () {
+                                        _controller!.previousPage(
+                                            duration: const Duration(
+                                                milliseconds: 100),
+                                            curve: Curves.bounceIn);
+                                      },
+                                      child: BackBtn(
+                                        controller: _controller!,
+                                        themeColor: widget.themeColor,
+                                      ),
+                                    ),
+                                    NextBtn(
+                                      controller: _controller!,
+                                      themeColor: widget.themeColor,
+                                    ),
+                                  ],
+                                ),
+                              ),
+                  ],
+                ),
+              ),
+              const SizedBox(height: 30),
             ],
           ),
         );
