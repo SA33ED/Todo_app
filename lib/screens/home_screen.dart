@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:to_do_app/cubit/task_cubit.dart';
 import 'package:to_do_app/helpers/app_colors.dart';
 import 'package:intl/intl.dart';
+import 'package:to_do_app/screens/all_tasks_screen.dart';
 import '../cubit/task_state.dart';
 import '../widgets/no_task_widget.dart';
 import '../widgets/task_item.dart';
@@ -23,11 +24,23 @@ class HomeScreen extends StatelessWidget {
             return ListView(
               children: [
                 //!Date
-                Text(
-                  DateFormat.yMMMMd().format(
-                    BlocProvider.of<TaskCubit>(context).selectedTitleDate!,
-                  ),
-                  style: customTextTheme.displayLarge!.copyWith(fontSize: 24),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      DateFormat.yMMMMd().format(
+                        BlocProvider.of<TaskCubit>(context).selectedTitleDate!,
+                      ),
+                      style:
+                          customTextTheme.displayLarge!.copyWith(fontSize: 24),
+                    ),
+                    IconButton(
+                        onPressed: () {
+                          BlocProvider.of<TaskCubit>(context).getAllTasks();
+                          Navigator.pushNamed(context, AllTasksScreen.id);
+                        },
+                        icon: const Icon(Icons.menu))
+                  ],
                 ),
                 const SizedBox(height: 12),
                 //!Today

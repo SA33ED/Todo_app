@@ -43,6 +43,7 @@ class TaskCubit extends Cubit<TaskState> {
   ];
 
   List<TaskModel> tasksList = [];
+  List<TaskModel> alltasksList = [];
 
   void getDate(context) async {
     emit(GetDateLoadingState());
@@ -176,6 +177,18 @@ class TaskCubit extends Cubit<TaskState> {
       emit(DeleteTaskSucssesState());
     } catch (e) {
       emit(DeleteTaskErrorState());
+    }
+  }
+
+  void getAllTasks() async {
+    emit(GetAllTasksLoadingState());
+    try {
+      await getIt<SqfLiteHelper>().getFromDB().then((value) {
+        alltasksList = value.map((e) => TaskModel.fromJson(e)).toList();
+      });
+      emit(GetAllTasksSucssesState());
+    } catch (e) {
+      emit(GetAllTasksErrorState());
     }
   }
 }

@@ -8,6 +8,7 @@ import 'package:to_do_app/helpers/app_colors.dart';
 import 'package:to_do_app/helpers/service_locator.dart';
 import 'package:to_do_app/helpers/sqflite_helper.dart';
 import 'package:to_do_app/screens/add_task_screen.dart';
+import 'package:to_do_app/screens/all_tasks_screen.dart';
 import 'screens/home_screen.dart';
 import 'screens/on_boarding_screen.dart';
 import 'screens/splash_screen.dart';
@@ -48,6 +49,7 @@ class ToDoApp extends StatelessWidget {
             OnBoardingScreen.id: (context) => const OnBoardingScreen(),
             HomeScreen.id: (context) => const HomeScreen(),
             AddTaskScreen.id: (context) => const AddTaskScreen(),
+            AllTasksScreen.id: (context) => const AllTasksScreen(),
           },
           initialRoute: SplashScreen.id,
         );
